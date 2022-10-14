@@ -1,0 +1,70 @@
+/* Colour Palette
+    off-black : #002438;
+    navy      : #003049;
+    orange    : #F77F00;
+    yellow    : #FCBF49;
+*/
+
+body {
+    font-family: sans-serif;
+}
+
+/* Helper Classes */
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/** header & nav **/
+/** step 1: Style the default/showing state. Starting with the mobile view, style the layout and links for how they will look when visible **/
+
+header {
+    background-color: #003049;
+    color: #FCBF49;
+    padding: 1rem;
+}
+
+header a {
+    color: #FCBF49;
+    text-decoration: none;
+    /** allows for clickable area to take up the full width and height of the li **/
+    display: block;
+}
+
+h1 a:hover {
+    color: #F77F00;
+}
+
+.menu a:hover,
+.menu a:active {
+    background-color: #002438;
+}
+
+/** style the toggle-btn **/
+.toggle-btn {
+    border: none;
+    outline: none;
+    background-color: #003049; /** or give it the background colour of your header */
+}
+.toggle-btn:hover{
+    cursor: pointer;
+}
+
+/** style the svg **/
+
+.toggle-btn svg rect {
+    fill: #FCBF49;
+}
+.toggle-btn:hover svg rect {
+    fill: #F77F00
+}
+
+.menu li {
+    /**The extra space from the line-height, makes this a larger tap area **/
+    line-height: 2.5rem; /*40px*/
+    text-align: center;
+}
+
+
+/* Media Query */
