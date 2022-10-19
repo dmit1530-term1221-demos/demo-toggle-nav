@@ -16,6 +16,11 @@ body {
     justify-content: space-between;
 }
 
+.inner-container {
+    margin: 0 auto;
+    max-width: 73.75rem;
+}
+
 /** header & nav **/
 /** step 1: Style the default/showing state. Starting with the mobile view, style the layout and links for how they will look when visible **/
 
@@ -47,6 +52,7 @@ h1 a:hover {
     outline: none;
     background-color: #003049; /** or give it the background colour of your header */
 }
+
 .toggle-btn:hover{
     cursor: pointer;
 }
@@ -66,5 +72,124 @@ h1 a:hover {
     text-align: center;
 }
 
+/** Step 2: Hide the menu. Once it's hidden this is default state. 
+**Note: if using display: none, that property cannot use transitions **/
 
-/* Media Query */
+header nav {
+    /** style this for how it will look overlapping the main content **/
+    /** this element does not have parent container that is positioned relative, therefore it's positioned relative to the browser screen **/
+    position: absolute;
+    top: 5rem;/*80px - the height of the closed header*/
+    left: 0;
+    /** once positioned absolute, this disappears from the document flow and it doesn't leave a space (it overlaps the content). It doesn't have a background colour, again because its not part of the header content. **/
+    background-color: #003049;
+    width: 100vw;
+    /** now we can hide the nav **/
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+/** Step 3: Create a special class that will show the menu using javaScript. This classname will only exist in CSS file for now. Next the javaScript will add this class to the nav element for us. Let's go add in the JS into the main.js file.
+**/
+.show-nav {
+   max-height: 100vh; 
+}
+
+/** section **/
+section {
+    padding: 3.125rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/** heading and tagline **/
+
+section p {
+    color: #002438;
+    border-bottom: 2px solid #f77f00;
+    padding-bottom: 0.625rem; /*shifts the border down */
+    margin-bottom: 0.625rem; /* shifts the text down **/
+    font-size: 1.777rem;
+}
+
+section h2 {
+    color: #002438;
+    font-size: 3.157rem;
+    margin-bottom: 2rem;
+}
+
+/** gallery section **/
+.gallery {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+}
+.thumbnail {
+    margin: 0 0.5rem;
+    position: relative; /** keeps the span element contained **/
+}
+.thumbnail img {
+    border-radius: 0.2rem;
+    margin-bottom: 1rem;
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.2);
+}
+
+/** position the span element on the thumbnails top, right corner **/
+span {
+    background-color: #fcbf49;
+    color: #fff;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3125rem;
+    /** position the span over the image **/
+    position: absolute;
+    /** position to the top right corner **/
+    top: -20px;
+    right: -10px;
+}
+
+/** Step 4: Add a media query and show the nav by default (hide the toggle) and style the nav horizontally **/
+/**700px**/
+@media screen and (min-width: 43.75rem) {
+ 
+    /** hide the toggle **/
+    .toggle-btn { display: none; }
+
+    /** we want to see the nav by default, so we are going to reset our values. **/
+    header nav {
+        /** reset the the position value and the width **/
+        /** By default all element are static - we are unsetting the absolute positioning**/
+        position: static; /** position: unset;**/
+        width: auto;
+        max-height: unset;
+        overflow: visible;
+    }
+
+    /** flex our menu and our inner container to layout header and nav horizontally **/
+    .menu,
+    header .inner-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .menu li {
+        margin-left: 0.5rem;
+    }
+    .menu li a {
+        padding: 0 0.5rem;
+    }
+    .menu a:hover,
+    .menu a:focus {
+        background-color: unset; /**transparent**/
+        color: #F77F00;
+    }
+
+
+}
+
+
+
+
+
+
